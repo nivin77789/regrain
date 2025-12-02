@@ -9,9 +9,12 @@ import { WhyMillets } from "@/components/WhyMillets";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
+import { FloatingMillets } from "@/components/FloatingMillets";
+
 const Index = () => {
   return (
-    <div className="min-h-screen animated-bg">
+    <div className="min-h-screen animated-bg relative">
+      <FloatingMillets />
       <Navbar />
       <Hero />
       <About />

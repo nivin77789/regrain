@@ -36,8 +36,14 @@ export const ValueBlocks = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="values" ref={ref} className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="values" ref={ref} className="py-24 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -59,20 +65,15 @@ export const ValueBlocks = () => {
               initial={{ opacity: 0, y: 50, rotateX: -10 }}
               animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15, type: "spring", stiffness: 100 }}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              whileHover={{ y: -12, scale: 1.02 }}
+              className="h-full"
             >
-              <Card className="p-8 h-full bg-card hover:shadow-hover transition-all duration-300 border border-border rounded-3xl group">
-                <motion.div 
-                  className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center mb-6`}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+              <Card className="p-8 h-full bg-card/60 backdrop-blur-xl border-border/50 hover:border-primary/50 hover:shadow-[0_22px_45px_-10px_hsla(33,41%,30%,0.2)] transition-all duration-500 rounded-3xl group flex flex-col">
+                <motion.div
+                  className={`w-16 h-16 ${value.color.replace('bg-', 'bg-opacity-20 bg-')} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}
+                  whileHover={{ rotate: 5 }}
                 >
-                  <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                  >
-                    <value.icon className="w-8 h-8" />
-                  </motion.div>
+                  <value.icon className="w-8 h-8" />
                 </motion.div>
                 <h3 className="text-xl font-display font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                   {value.title}
