@@ -16,7 +16,7 @@ export const Hero = () => {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(135deg, hsla(33,41%,30%,0.6), hsla(33,41%,30%,0.4)), url(${heroImage})`,
+            backgroundImage: `linear-gradient(135deg, hsla(76, 35%, 20%, 0.7), hsla(76, 35%, 30%, 0.5)), url(${heroImage})`,
           }}
         />
       </motion.div>
@@ -27,13 +27,15 @@ export const Hero = () => {
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-beige/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+            }}
             initial={{
-              x: Math.random() * window.innerWidth,
               y: -20,
               opacity: 0
             }}
             animate={{
-              y: window.innerHeight + 20,
+              y: "100vh",
               opacity: [0, 0.6, 0]
             }}
             transition={{

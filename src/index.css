@@ -127,9 +127,12 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 
+  html,
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-family: 'Inter', sans-serif;
+    width: 100%;
+    position: relative;
   }
 
   h1,

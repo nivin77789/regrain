@@ -48,7 +48,7 @@ export const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "shadow-card backdrop-blur-lg" : ""
           }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="w-full lg:container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.div
@@ -125,7 +125,7 @@ export const Navbar = () => {
         transition={{ duration: 0.3 }}
         className="fixed top-20 left-0 right-0 z-40 lg:hidden bg-beige/98 backdrop-blur-lg shadow-card"
       >
-        <div className="container mx-auto px-4 py-6 space-y-2">
+        <div className="w-full mx-auto px-4 py-6 space-y-2">
           {navLinks.map((link) => (
             <button
               key={link.name}
