@@ -96,7 +96,7 @@ export const Navbar = () => {
             >
               <Button
                 onClick={() => handleNavClick("#contact")}
-                className={`rounded-full transition-all duration-300 hover:scale-105 ${isScrolled ? "bg-primary text-primary-foreground hover:bg-primary/90" : "bg-beige text-green hover:bg-beige-light"} shadow-lg`}
+                className={`rounded-full transition-all duration-300 hover:scale-105 bg-[hsl(33,41%,30%)] text-primary-foreground hover:bg-[hsl(33,41%,30%)]/90`} shadow-lg
               >
                 Partner With Us
               </Button>

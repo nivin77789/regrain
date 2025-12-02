@@ -131,12 +131,13 @@ export const Products = () => {
                 {category.items.map((millet, index) => (
                   <motion.div
                     key={millet.name}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: (categoryIndex * 0.2) + (index * 0.1) }}
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                    whileHover={{ y: -12, scale: 1.02 }}
+                    transition={{ duration: 0.4, delay: (categoryIndex * 0.2) + (index * 0.1) }}
                     className="h-full"
                   >
-                    <Card className="h-full overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-2xl hover:border-primary/20 transition-all duration-500 group flex flex-col">
+                    <Card className="h-full overflow-hidden bg-card/80 backdrop-blur-xl border-border/60 hover:border-primary/50 hover:shadow-[0_22px_45px_-10px_hsla(33,41%,30%,0.3)] transition-all duration-500 group flex flex-col">
                       {millet.image ? (
                         <div className="relative h-72 overflow-hidden">
                           <motion.img
@@ -176,9 +177,9 @@ export const Products = () => {
 
                         <div className="flex flex-wrap gap-2 mt-auto">
                           {millet.tags?.map((tag) => (
-                            <span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary/50 text-secondary-foreground border border-secondary group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary transition-all duration-300">
+                            <motion.span key={tag} className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary/50 text-secondary-foreground border border-secondary group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary transition-all duration-300" whileHover={{ scale: 1.1 }}>
                               {tag}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       </CardContent>

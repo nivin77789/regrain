@@ -50,7 +50,7 @@ export const Contact = () => {
               >
                 <Card className="p-8 bg-card border border-border rounded-3xl shadow-soft hover:shadow-card transition-all duration-300">
                   <div className="flex items-start gap-4">
-                    <motion.div 
+                    <motion.div
                       className={`w-12 h-12 bg-${item.color}/10 rounded-2xl flex items-center justify-center flex-shrink-0`}
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       transition={{ type: "spring", stiffness: 400 }}
@@ -117,7 +117,7 @@ export const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full transition-all duration-300 hover:scale-105"
+                  className="w-full bg-[hsl(33,41%,30%)] text-primary-foreground hover:bg-[hsl(33,41%,30%)]/90 rounded-full transition-all duration-300 hover:scale-105"
                 >
                   Send Message
                 </Button>

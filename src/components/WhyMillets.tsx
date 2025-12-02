@@ -63,17 +63,17 @@ export const WhyMillets = () => {
               key={benefit.title}
               initial={{ opacity: 0, y: 50, scale: 0.8 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 delay: index * 0.12,
                 type: "spring",
                 stiffness: 100
               }}
               className="relative group"
             >
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl blur-xl transition-all duration-300"
-                animate={{ 
+                animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0, 0.5, 0]
                 }}
@@ -83,23 +83,23 @@ export const WhyMillets = () => {
                   delay: index * 0.5
                 }}
               />
-              <motion.div 
+              <motion.div
                 className="relative bg-card p-8 rounded-3xl shadow-soft border border-border hover:shadow-card transition-all duration-300"
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.div 
+                <motion.div
                   className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"
                   whileHover={{ scale: 1.15, rotate: 10 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <motion.div
-                    animate={{ 
+                    animate={{
                       y: [0, -5, 0],
                       rotate: [0, 5, 0]
                     }}
-                    transition={{ 
-                      duration: 2, 
+                    transition={{
+                      duration: 2,
                       repeat: Infinity,
                       delay: index * 0.3
                     }}
@@ -126,8 +126,8 @@ export const WhyMillets = () => {
         >
           <div className="bg-card p-8 md:p-12 rounded-3xl shadow-card border border-border max-w-4xl mx-auto">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Millets are not just crops—they're a <span className="font-semibold text-foreground">climate solution</span>, 
-              a <span className="font-semibold text-foreground">nutrition powerhouse</span>, and a 
+              Millets are not just crops—they're a <span className="font-semibold text-foreground">climate solution</span>,
+              a <span className="font-semibold text-foreground">nutrition powerhouse</span>, and a
               <span className="font-semibold text-foreground"> sustainable livelihood</span> for millions of farmers across India.
             </p>
           </div>

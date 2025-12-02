@@ -16,7 +16,7 @@ export const Hero = () => {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(106, 122, 58, 0.85), rgba(166, 124, 69, 0.75)), url(${heroImage})`,
+            backgroundImage: `linear-gradient(135deg, hsla(33,41%,30%,0.6), hsla(33,41%,30%,0.4)), url(${heroImage})`,
           }}
         />
       </motion.div>
@@ -122,7 +122,7 @@ export const Hero = () => {
             <Button
               size="lg"
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-white/20 backdrop-blur-lg border border-white/30 text-primary-foreground hover:bg-white/30 transition-all duration-300 text-lg px-8 py-6 rounded-full shadow-lg"
+              className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] transition-all duration-300 text-lg px-8 py-6 rounded-full"
             >
               Partner With Us
             </Button>
