@@ -8,6 +8,7 @@ import { Products } from "@/components/Products";
 import { WhyMillets } from "@/components/WhyMillets";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { FAQ } from "@/components/FAQ";
 import { FloatingMillets } from "@/components/FloatingMillets";
 import {
   Pagination,
@@ -47,6 +48,7 @@ const Index = () => {
             <div className="pt-20">
               <WhyMillets />
               <Products />
+              <FAQ />
               <Contact />
             </div>
           </>
