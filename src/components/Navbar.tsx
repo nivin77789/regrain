@@ -59,7 +59,7 @@ export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) =
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className="flex items-center gap-3 cursor-pointer"
-              onClick={() => navigate("/")}
+              onClick={() => handleNavClick("/")}
             >
               <div className={`transition-all duration-300 ${shouldShowDarkText ? "bg-primary/10" : "bg-beige/20 backdrop-blur-sm"
                 } p-2 rounded-2xl`}>

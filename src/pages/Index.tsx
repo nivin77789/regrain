@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -18,11 +18,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
+import { useSearchParams } from "react-router-dom";
+
 const Index = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = parseInt(searchParams.get("page") || "1");
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setSearchParams({ page: page.toString() });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
