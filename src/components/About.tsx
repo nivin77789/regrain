@@ -71,7 +71,7 @@ export const About = () => {
                 ReGrain is a <span className="font-semibold text-primary">farmer-first initiative</span> dedicated to improving sustainability, health, and rural prosperity. We empower farmers with modern cultivation knowledge, on-ground support, and access to markets—strengthening farmer livelihoods while ensuring quality millet supply for India's growing food ecosystem.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Based in <span className="font-semibold text-primary">Andhra Pradesh</span>, we work directly with farming communities to transform dryland agriculture through sustainable millet cultivation practices.
+                Based in <span className="font-semibold text-primary">Southern India</span>, we work directly with farming communities to transform dryland agriculture through sustainable millet cultivation practices.
               </p>
             </div>
 

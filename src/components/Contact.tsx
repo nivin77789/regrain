@@ -117,7 +117,7 @@ export const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-[hsl(33,41%,30%)] text-primary-foreground hover:bg-[hsl(33,41%,30%)]/90 rounded-full transition-all duration-300 hover:scale-105"
+                  className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-full transition-all duration-300 hover:scale-105"
                 >
                   Send Message
                 </Button>

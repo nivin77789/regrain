@@ -2,21 +2,23 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu, X, Sprout } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "What We Do", href: "#values" },
-  { name: "Mission", href: "#mission" },
-  { name: "Products", href: "#products" },
-  { name: "Why Millets", href: "#why-millets" },
-
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "/about" },
+  { name: "What We Do", href: "/what-we-do" },
+  { name: "Mission", href: "/mission" },
+  { name: "Products", href: "/products" },
+  { name: "Why Millets", href: "/why-millets" },
+  { name: "Contact", href: "/contact" },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const backgroundColor = useTransform(
     scrollY,
@@ -33,19 +35,20 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isHome = location.pathname === "/";
+  const shouldShowDarkText = isScrolled || !isHome || forceDarkText;
+
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    navigate(href);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <>
       <motion.nav
-        style={{ backgroundColor }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "shadow-card backdrop-blur-lg" : ""
+        style={{ backgroundColor: forceDarkText ? "rgba(246, 241, 228, 0.95)" : backgroundColor }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || forceDarkText ? "shadow-card backdrop-blur-lg" : ""
           }`}
       >
         <div className="w-full lg:container mx-auto px-4">
@@ -56,13 +59,13 @@ export const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className="flex items-center gap-3 cursor-pointer"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => navigate("/")}
             >
-              <div className={`transition-all duration-300 ${isScrolled ? "bg-primary/10" : "bg-beige/20 backdrop-blur-sm"
+              <div className={`transition-all duration-300 ${shouldShowDarkText ? "bg-primary/10" : "bg-beige/20 backdrop-blur-sm"
                 } p-2 rounded-2xl`}>
-                <Sprout className={`w-6 h-6 ${isScrolled ? "text-primary" : "text-beige"}`} />
+                <Sprout className={`w-6 h-6 ${shouldShowDarkText ? "text-primary" : "text-beige"}`} />
               </div>
-              <span className={`text-2xl font-display font-bold transition-colors duration-300 ${isScrolled ? "text-primary" : "text-beige"
+              <span className={`text-2xl font-display font-bold transition-colors duration-300 ${shouldShowDarkText ? "text-primary" : "text-beige"
                 }`}>
                 ReGrain
               </span>
@@ -77,9 +80,11 @@ export const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   onClick={() => handleNavClick(link.href)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${isScrolled
-                    ? "text-foreground hover:bg-primary/10 hover:text-primary"
-                    : "text-beige hover:bg-beige/20"
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 ${location.pathname === link.href
+                    ? "bg-primary/10 text-primary"
+                    : shouldShowDarkText
+                      ? "text-foreground hover:bg-primary/10 hover:text-primary"
+                      : "text-beige hover:bg-beige/20"
                     }`}
                 >
                   {link.name}
@@ -95,8 +100,8 @@ export const Navbar = () => {
               className="hidden lg:block"
             >
               <Button
-                onClick={() => handleNavClick("#contact")}
-                className={`rounded-full transition-all duration-300 hover:scale-105 bg-[hsl(33,41%,30%)] text-primary-foreground hover:bg-[hsl(33,41%,30%)]/90`} shadow-lg
+                onClick={() => handleNavClick("/contact")}
+                className={`rounded-full transition-all duration-300 hover:scale-105 bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg`}
               >
                 Partner With Us
               </Button>
@@ -105,7 +110,7 @@ export const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-2 rounded-xl transition-colors duration-300 ${isScrolled ? "text-foreground hover:bg-primary/10" : "text-beige hover:bg-beige/20"
+              className={`lg:hidden p-2 rounded-xl transition-colors duration-300 ${shouldShowDarkText ? "text-foreground hover:bg-primary/10" : "text-beige hover:bg-beige/20"
                 }`}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -130,14 +135,17 @@ export const Navbar = () => {
             <button
               key={link.name}
               onClick={() => handleNavClick(link.href)}
-              className="w-full text-left px-4 py-3 rounded-xl text-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300 font-medium"
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 font-medium ${location.pathname === link.href
+                ? "bg-primary/10 text-primary"
+                : "text-foreground hover:bg-primary/10 hover:text-primary"
+                }`}
             >
               {link.name}
             </button>
           ))}
           <Button
-            onClick={() => handleNavClick("#contact")}
-            className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-lg"
+            onClick={() => handleNavClick("/contact")}
+            className="w-full mt-4 bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-full shadow-lg"
           >
             Partner With Us
           </Button>

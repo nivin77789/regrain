@@ -2,38 +2,59 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Cloud, Heart, Droplet, TrendingUp, Leaf, Sparkles } from "lucide-react";
+import environmentImage from "@/assets/environment_drought_resilient.png";
+import healthImage from "@/assets/health_nutrition_bowl.png";
+import farmerImage from "@/assets/farmer_empowerment.png";
 
-const benefits = [
+const categories = [
   {
-    icon: Cloud,
-    title: "Climate-Resilient",
-    description: "Thrives in harsh conditions with minimal water requirements",
+    title: "For Environment",
+    image: environmentImage,
+    items: [
+      {
+        icon: Cloud,
+        title: "Climate-Resilient",
+        description: "Thrives in harsh conditions with minimal water requirements",
+      },
+      {
+        icon: Droplet,
+        title: "Low Water Usage",
+        description: "Requires 70% less water than traditional crops",
+      },
+    ]
   },
   {
-    icon: Heart,
-    title: "Nutrient-Rich",
-    description: "Packed with protein, fiber, and essential minerals",
+    title: "For Health",
+    image: healthImage,
+    items: [
+      {
+        icon: Heart,
+        title: "Nutrient-Rich",
+        description: "Packed with protein, fiber, and essential minerals",
+      },
+      {
+        icon: TrendingUp,
+        title: "High Fiber & Protein",
+        description: "Superior nutritional profile for health-conscious consumers",
+      },
+    ]
   },
   {
-    icon: Droplet,
-    title: "Low Water Usage",
-    description: "Requires 70% less water than traditional crops",
-  },
-  {
-    icon: TrendingUp,
-    title: "High Fiber & Protein",
-    description: "Superior nutritional profile for health-conscious consumers",
-  },
-  {
-    icon: Leaf,
-    title: "Excellent for Dryland",
-    description: "Perfect for sustainable dryland farming practices",
-  },
-  {
-    icon: Sparkles,
-    title: "Future-Ready Crop",
-    description: "Aligned with sustainable food security goals",
-  },
+    title: "For Farmers",
+    image: farmerImage,
+    items: [
+      {
+        icon: Leaf,
+        title: "Excellent for Dryland",
+        description: "Perfect for sustainable dryland farming practices",
+      },
+      {
+        icon: Sparkles,
+        title: "Future-Ready Crop",
+        description: "Aligned with sustainable food security goals",
+      },
+    ]
+  }
 ];
 
 export const WhyMillets = () => {
@@ -57,63 +78,50 @@ export const WhyMillets = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {benefits.map((benefit, index) => (
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {categories.map((category, catIndex) => (
             <motion.div
-              key={benefit.title}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.12,
-                type: "spring",
-                stiffness: 100
-              }}
-              className="relative group"
+              key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: catIndex * 0.2 }}
+              whileHover={{ y: -10 }}
+              className="group relative bg-card rounded-3xl overflow-hidden shadow-lg border border-border hover:shadow-2xl transition-all duration-500 flex flex-col"
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl blur-xl transition-all duration-300"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0, 0.5, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.5
-                }}
-              />
-              <motion.div
-                className="relative bg-card p-8 rounded-3xl shadow-soft border border-border hover:shadow-card transition-all duration-300"
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <motion.div
-                  className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"
-                  whileHover={{ scale: 1.15, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <motion.div
-                    animate={{
-                      y: [0, -5, 0],
-                      rotate: [0, 5, 0]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.3
-                    }}
-                  >
-                    <benefit.icon className="w-7 h-7 text-primary" />
-                  </motion.div>
-                </motion.div>
-                <h3 className="text-xl font-display font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                  {benefit.title}
+              {/* Image Section */}
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-80" />
+                <h3 className="absolute bottom-4 left-6 text-2xl font-display font-bold text-white tracking-wide">
+                  {category.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {benefit.description}
-                </p>
-              </motion.div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6 flex-grow flex flex-col gap-6">
+                {category.items.map((benefit, index) => (
+                  <div key={benefit.title} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                      <benefit.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground mb-1">
+                        {benefit.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Decorative Bottom Gradient */}
+              <div className="h-1.5 w-full bg-gradient-to-r from-primary/40 via-secondary/40 to-primary/40 opacity-50" />
             </motion.div>
           ))}
         </div>

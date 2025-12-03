@@ -115,7 +115,7 @@ export const Hero = () => {
             <Button
               size="lg"
               onClick={() => document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-beige text-green hover:bg-beige-light transition-all duration-300 text-lg px-8 py-6 rounded-full shadow-lg"
+              className="bg-beige text-secondary hover:bg-beige-light transition-all duration-300 text-lg px-8 py-6 rounded-full shadow-lg"
             >
               Explore Our Millets
             </Button>
