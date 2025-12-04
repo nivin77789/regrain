@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Mail, Phone, Globe } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -10,6 +10,34 @@ import { Card } from "./ui/card";
 export const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "ff78b595-6374-4311-9f45-358d3e3c4d81");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setResult("Form Submitted Successfully");
+        form.reset();
+      } else {
+        console.error("Web3Forms Error:", data);
+        setResult(data.message || "Error submitting form");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setResult("Error submitting form");
+    }
+  };
 
   return (
     <section id="contact" ref={ref} className="py-24 bg-background">
@@ -83,13 +111,15 @@ export const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Card className="p-8 bg-card border border-border rounded-3xl shadow-card">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={onSubmit}>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Your Name
                   </label>
                   <Input
                     type="text"
+                    name="name"
+                    required
                     placeholder="Enter your name"
                     className="rounded-xl border-input"
                   />
@@ -100,6 +130,8 @@ export const Contact = () => {
                   </label>
                   <Input
                     type="email"
+                    name="email"
+                    required
                     placeholder="your@email.com"
                     className="rounded-xl border-input"
                   />
@@ -109,6 +141,8 @@ export const Contact = () => {
                     Message
                   </label>
                   <Textarea
+                    name="message"
+                    required
                     placeholder="Tell us about your interest in sustainable millet cultivation..."
                     rows={6}
                     className="rounded-xl border-input"
@@ -121,6 +155,11 @@ export const Contact = () => {
                 >
                   Send Message
                 </Button>
+                {result && (
+                  <div className={`text-center text-sm font-medium ${result.includes("Success") ? "text-green-600" : "text-red-600"}`}>
+                    {result}
+                  </div>
+                )}
               </form>
             </Card>
           </motion.div>

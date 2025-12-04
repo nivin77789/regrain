@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Sprout } from "lucide-react";
 import heroImage from "@/assets/hero-millet-field.jpg";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
@@ -67,7 +69,7 @@ export const Hero = () => {
             >
               <Sprout className="w-8 h-8 text-beige" />
             </motion.div>
-            <span className="text-2xl font-display font-bold text-beige">ReGrain</span>
+            <span className="text-2xl font-display font-bold text-beige select-none">ReGrain</span>
           </motion.div>
         </motion.div>
 
@@ -114,7 +116,7 @@ export const Hero = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="lg"
-              onClick={() => document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => navigate("/products")}
               className="bg-beige text-secondary hover:bg-beige-light transition-all duration-300 text-lg px-8 py-6 rounded-full shadow-lg"
             >
               Explore Our Millets
@@ -123,7 +125,7 @@ export const Hero = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="lg"
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => navigate("/contact")}
               className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] transition-all duration-300 text-lg px-8 py-6 rounded-full"
             >
               Partner With Us

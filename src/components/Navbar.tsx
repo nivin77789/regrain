@@ -65,7 +65,7 @@ export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) =
                 } p-2 rounded-2xl`}>
                 <Sprout className={`w-6 h-6 ${shouldShowDarkText ? "text-primary" : "text-beige"}`} />
               </div>
-              <span className={`text-2xl font-display font-bold transition-colors duration-300 ${shouldShowDarkText ? "text-primary" : "text-beige"
+              <span className={`text-2xl font-display font-bold transition-colors duration-300 select-none ${shouldShowDarkText ? "text-primary" : "text-beige"
                 }`}>
                 ReGrain
               </span>

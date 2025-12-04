@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Users, Sprout, MapPin, Leaf } from "lucide-react";
 import farmerImage from "@/assets/farmer-portrait.jpg";
 
 export const About = () => {
@@ -93,6 +94,34 @@ export const About = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Detailed Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+        >
+          {[
+            { icon: Users, count: "500+", label: "Farmers Empowered", color: "text-blue-500", bg: "bg-blue-500/10" },
+            { icon: Sprout, count: "1200+", label: "Acres Cultivated", color: "text-green-500", bg: "bg-green-500/10" },
+            { icon: MapPin, count: "50+", label: "Villages Impacted", color: "text-orange-500", bg: "bg-orange-500/10" },
+            { icon: Leaf, count: "100%", label: "Natural Produce", color: "text-emerald-500", bg: "bg-emerald-500/10" }
+          ].map((stat, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -5 }}
+              className="bg-card border border-border/50 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 text-center group"
+            >
+              <div className={`w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center ${stat.bg} group-hover:scale-110 transition-transform duration-300`}>
+                <stat.icon className={`w-7 h-7 ${stat.color}`} />
+              </div>
+              <h3 className="text-3xl font-display font-bold text-foreground mb-1">{stat.count}</h3>
+              <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
