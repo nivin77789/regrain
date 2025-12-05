@@ -8,6 +8,21 @@ export const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section id="about" ref={ref} className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
@@ -67,31 +82,48 @@ export const About = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-8"
           >
-            <div className="bg-card/40 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-lg">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="bg-card/40 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-lg"
+            >
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 ReGrain is a <span className="font-semibold text-primary">farmer-first initiative</span> dedicated to improving sustainability, health, and rural prosperity. We empower farmers with modern cultivation knowledge, on-ground support, and access to markets—strengthening farmer livelihoods while ensuring quality millet supply for India's growing food ecosystem.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Based in <span className="font-semibold text-primary">Southern India</span>, we work directly with farming communities to transform dryland agriculture through sustainable millet cultivation practices.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="bg-card/60 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-primary/10 group hover:border-primary/30 transition-all duration-300"
-              >
-                <div className="text-4xl font-display font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300 origin-left">500+</div>
-                <div className="text-sm font-medium text-muted-foreground">Farmers Empowered</div>
-              </motion.div>
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="bg-card/60 backdrop-blur-xl p-6 rounded-2xl shadow-lg border border-secondary/10 group hover:border-secondary/30 transition-all duration-300"
-              >
-                <div className="text-4xl font-display font-bold text-secondary mb-2 group-hover:scale-110 transition-transform duration-300 origin-left">100%</div>
-                <div className="text-sm font-medium text-muted-foreground">Sustainable Practices</div>
-              </motion.div>
-            </div>
+            <motion.ul
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="space-y-4"
+            >
+              <motion.li variants={itemVariants} className="flex items-start space-x-3 bg-card/60 backdrop-blur-xl p-4 rounded-2xl shadow-lg border border-primary/10 hover:border-primary/30 transition-all duration-300">
+                <Users className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-lg text-foreground">Empowering Farmers</h4>
+                  <p className="text-muted-foreground text-sm">Providing modern cultivation knowledge and on-ground support to strengthen livelihoods.</p>
+                </div>
+              </motion.li>
+              <motion.li variants={itemVariants} className="flex items-start space-x-3 bg-card/60 backdrop-blur-xl p-4 rounded-2xl shadow-lg border border-secondary/10 hover:border-secondary/30 transition-all duration-300">
+                <Sprout className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-lg text-foreground">Sustainable Practices</h4>
+                  <p className="text-muted-foreground text-sm">Promoting eco-friendly millet cultivation for a healthier planet and produce.</p>
+                </div>
+              </motion.li>
+              <motion.li variants={itemVariants} className="flex items-start space-x-3 bg-card/60 backdrop-blur-xl p-4 rounded-2xl shadow-lg border border-emerald-500/10 hover:border-emerald-500/30 transition-all duration-300">
+                <Leaf className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-lg text-foreground">Quality Millet Supply</h4>
+                  <p className="text-muted-foreground text-sm">Ensuring a consistent supply of high-quality, natural millets for India's food ecosystem.</p>
+                </div>
+              </motion.li>
+            </motion.ul>
           </motion.div>
         </div>
 
@@ -126,3 +158,4 @@ export const About = () => {
     </section>
   );
 };
+
