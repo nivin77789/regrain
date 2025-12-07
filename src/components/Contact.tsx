@@ -6,6 +6,8 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Card } from "./ui/card";
+import { db } from "../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export const Contact = () => {
   const ref = useRef(null);
@@ -16,25 +18,21 @@ export const Contact = () => {
     event.preventDefault();
     setResult("Sending....");
     const form = event.currentTarget;
-    const formData = new FormData(form);
-    formData.append("access_key", "ff78b595-6374-4311-9f45-358d3e3c4d81");
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
+      await addDoc(collection(db, "contact_submissions"), {
+        name,
+        email,
+        message,
+        createdAt: serverTimestamp()
       });
-
-      const data = await response.json();
-      if (data.success) {
-        setResult("Form Submitted Successfully");
-        form.reset();
-      } else {
-        console.error("Web3Forms Error:", data);
-        setResult(data.message || "Error submitting form");
-      }
+      setResult("Form Submitted Successfully");
+      form.reset();
     } catch (error) {
-      console.error("Submission Error:", error);
+      console.error("Firebase Submission Error:", error);
       setResult("Error submitting form");
     }
   };
@@ -121,7 +119,7 @@ export const Contact = () => {
                     name="name"
                     required
                     placeholder="Enter your name"
-                    className="rounded-xl border-input"
+                    className="rounded-xl border-input bg-input/50 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -133,7 +131,7 @@ export const Contact = () => {
                     name="email"
                     required
                     placeholder="your@email.com"
-                    className="rounded-xl border-input"
+                    className="rounded-xl border-input bg-input/50 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -145,7 +143,7 @@ export const Contact = () => {
                     required
                     placeholder="Tell us about your interest in sustainable millet cultivation..."
                     rows={6}
-                    className="rounded-xl border-input"
+                    className="rounded-xl border-input bg-input/50 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200"
                   />
                 </div>
                 <Button
@@ -168,3 +166,4 @@ export const Contact = () => {
     </section>
   );
 };
+export default Contact;
