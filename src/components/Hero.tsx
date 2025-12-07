@@ -3,9 +3,20 @@ import { Button } from "./ui/button";
 import { Sprout } from "lucide-react";
 import heroVideo from "@/assets/hero.mp4";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 export const Hero = () => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video autoplay failed:", error);
+      });
+    }
+  }, []);
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video with Overlay */}
@@ -16,17 +27,19 @@ export const Hero = () => {
         transition={{ duration: 2, ease: "easeOut" }}
       >
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          controls={false}
           className="absolute inset-0 w-full h-full object-cover scale-[1.5]"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
         {/* Gradient Overlay */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 backdrop-blur-[8px]"
           style={{
             background: `linear-gradient(135deg, hsla(76, 35%, 20%, 0.7), hsla(76, 35%, 30%, 0.5))`
           }}
