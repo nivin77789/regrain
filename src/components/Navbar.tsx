@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
+
 import { Button } from "./ui/button";
 import { Menu, X, Sprout } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -11,6 +12,7 @@ const navLinks = [
   { name: "Products", href: "/products" },
   { name: "Why Millets", href: "/why-millets" },
   { name: "Contact", href: "/contact" },
+  { name: "Careers", href: "/careers" },
 ];
 
 export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) => {

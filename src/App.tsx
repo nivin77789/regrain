@@ -10,10 +10,19 @@ import MissionPage from "./pages/MissionPage";
 import ProductsPage from "./pages/ProductsPage";
 import WhyMilletsPage from "./pages/WhyMilletsPage";
 import ContactPage from "./pages/ContactPage";
+import CareersPage from "./pages/CareersPage";
 import NotFound from "./pages/NotFound";
 import { AdminDashboard } from "./components/AdminDashboard";
 
 const queryClient = new QueryClient();
+
+import { VisitLogger } from "./components/VisitLogger";
+
+// ... existing imports
+
+import { ScrollToTop } from "./components/ScrollToTop";
+
+// ... existing imports
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -21,6 +30,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
+        <VisitLogger />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
@@ -29,6 +40,7 @@ const App = () => (
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/why-millets" element={<WhyMilletsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
