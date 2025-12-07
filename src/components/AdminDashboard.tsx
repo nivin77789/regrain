@@ -92,9 +92,9 @@ export const AdminDashboard = () => {
     if (!loggedIn) {
         return (
             <motion.div
-                className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                className="flex items-center justify-center min-h-screen bg-background"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
             >
                 <Card className="w-96 p-8 bg-card/30 backdrop-blur-xl rounded-xl shadow-2xl">
