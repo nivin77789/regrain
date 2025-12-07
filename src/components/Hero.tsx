@@ -1,24 +1,34 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Sprout } from "lucide-react";
-import heroImage from "@/assets/hero-millet-field.jpg";
+import heroVideo from "@/assets/hero.mp4";
 import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
   const navigate = useNavigate();
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Video with Overlay */}
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ scale: 1.2, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover scale-[1.5]"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        {/* Gradient Overlay */}
         <div
-          className="w-full h-full bg-cover bg-center"
+          className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(135deg, hsla(76, 35%, 20%, 0.7), hsla(76, 35%, 30%, 0.5)), url(${heroImage})`,
+            background: `linear-gradient(135deg, hsla(76, 35%, 20%, 0.7), hsla(76, 35%, 30%, 0.5))`
           }}
         />
       </motion.div>
