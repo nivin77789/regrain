@@ -7,10 +7,11 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <Sprout className="w-8 h-8" />
-              <span className="text-2xl font-display font-bold">ReGrain</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="ReGrain Logo"
+              className="h-12 w-auto object-contain"
+            />
             <p className="text-secondary-foreground/80 text-sm leading-relaxed">
               Empowering farmers with sustainable millet cultivation for a resilient future.
             </p>

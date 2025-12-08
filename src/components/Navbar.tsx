@@ -60,17 +60,19 @@ export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) =
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 cursor-pointer"
+              className={`flex items-center gap-3 cursor-pointer px-5 py-2.5 rounded-full border backdrop-blur-sm transition-all duration-300 ${shouldShowDarkText
+                  ? "bg-primary/5 border-primary/10"
+                  : "bg-beige/20 border-beige/30"
+                }`}
               onClick={() => handleNavClick("/")}
             >
-              <div className={`transition-all duration-300 ${shouldShowDarkText ? "bg-primary/10" : "bg-beige/20 backdrop-blur-sm"
-                } p-2 rounded-2xl`}>
-                <Sprout className={`w-6 h-6 ${shouldShowDarkText ? "text-primary" : "text-beige"}`} />
-              </div>
-              <span className={`text-2xl font-display font-bold transition-colors duration-300 select-none ${shouldShowDarkText ? "text-primary" : "text-beige"
-                }`}>
-                ReGrain
-              </span>
+              <img
+                src="/logo.png"
+                alt="ReGrain Logo"
+                className="h-8 w-auto object-contain"
+              />
+              <span className={`text-xl font-display font-bold ${shouldShowDarkText ? "text-primary" : "text-beige"
+                }`}>ReGrain</span>
             </motion.div>
 
             {/* Desktop Navigation */}
