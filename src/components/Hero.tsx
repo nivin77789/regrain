@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Sprout } from "lucide-react";
 import heroVideo from "@/assets/hero.mp4";
+import heroPoster from "@/assets/hero-millet-field.jpg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
@@ -33,10 +34,12 @@ export const Hero = () => {
           muted
           playsInline
           controls={false}
-          className="absolute inset-0 w-full h-full object-cover scale-[1.5]"
+          poster={heroPoster}
+          className="absolute inset-0 w-full h-full object-cover scale-[1.5] blur-[4px]"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent backdrop-blur-[2px]" />
 
       </motion.div>
 

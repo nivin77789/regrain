@@ -239,6 +239,7 @@ export const Products = () => {
                             className="w-full h-full object-cover"
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.7 }}
+                            loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
                         </div>

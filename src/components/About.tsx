@@ -49,6 +49,7 @@ export const About = () => {
                     src={farmerImage}
                     alt="Farmer in millet field"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 </motion.div>
