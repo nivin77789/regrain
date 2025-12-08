@@ -37,41 +37,10 @@ export const Hero = () => {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Gradient Overlay */}
-        <div
-          className="absolute inset-0 backdrop-blur-[8px]"
-          style={{
-            background: `linear-gradient(135deg, hsla(76, 35%, 20%, 0.7), hsla(76, 35%, 30%, 0.5))`
-          }}
-        />
+
       </motion.div>
 
-      {/* Animated Grain Particles */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-beige/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-            }}
-            initial={{
-              y: -20,
-              opacity: 0
-            }}
-            animate={{
-              y: "100vh",
-              opacity: [0, 0.6, 0]
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
+
 
       {/* Logo and Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
