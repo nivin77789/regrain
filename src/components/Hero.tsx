@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Sprout } from "lucide-react";
+
 import heroVideo from "@/assets/hero.mp4";
 import heroPoster from "@/assets/hero-millet-field.jpg";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +62,7 @@ export const Hero = () => {
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
             >
-              <Sprout className="w-8 h-8 text-beige" />
+              <img src="/logo.png" alt="ReGrain Logo" className="w-8 h-8 object-contain" />
             </motion.div>
             <span className="text-2xl font-display font-bold text-beige select-none">ReGrain</span>
           </motion.div>

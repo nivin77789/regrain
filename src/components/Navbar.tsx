@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 
 import { Button } from "./ui/button";
-import { Menu, X, Sprout } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -61,8 +61,8 @@ export const Navbar = ({ forceDarkText = false }: { forceDarkText?: boolean }) =
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className={`flex items-center gap-3 cursor-pointer px-5 py-2.5 rounded-full border backdrop-blur-sm transition-all duration-300 ${shouldShowDarkText
-                  ? "bg-primary/5 border-primary/10"
-                  : "bg-beige/20 border-beige/30"
+                ? "bg-primary/5 border-primary/10"
+                : "bg-beige/20 border-beige/30"
                 }`}
               onClick={() => handleNavClick("/")}
             >
