@@ -108,7 +108,7 @@ export const About = () => {
                           Empowering Farmers
                         </h4>
                         <p className="text-sm text-muted-foreground/90 leading-relaxed">
-                          Strengtheninggggggg livelihoods through modern knowledge and support.
+                          Strengthening livelihoods through modern knowledge and support.
                         </p>
                       </div>
                     </motion.div>
